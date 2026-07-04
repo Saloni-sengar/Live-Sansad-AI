@@ -5,12 +5,21 @@
 <div align="center">
 
 # 🏛️ Live Sansad AI
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq-000000?style=for-the-badge)
-![LLM](https://img.shields.io/badge/LLM-AI-blue?style=for-the-badge)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github)
+<p align="center">
+
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+
+<img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white">
+
+<img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white">
+
+<img src="https://img.shields.io/badge/Groq-000000?style=for-the-badge">
+
+<img src="https://img.shields.io/badge/LLM-AI-blue?style=for-the-badge">
+
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github">
+
+</p>
 
 ### AI-Powered Parliament Monitoring & Citizen Engagement Platform
 
@@ -342,34 +351,45 @@ http://127.0.0.1:8000/
 ```
 
 ---
-
 # 📸 Project Screenshots
 
-> *(Add screenshots inside the `images` folder and update the image paths.)*
+## 🏠 Landing Page
 
-## 🏠 Home Page
-
-![Home](images/home.png)
+<p align="center">
+  <img src="images/landing-page.jpeg" width="90%">
+</p>
 
 ---
 
 ## 👤 Citizen Dashboard
 
-![Citizen Dashboard](images/citizen_dashboard.png)
+<p align="center">
+  <img src="images/citizen-dashboard.jpeg" width="90%">
+</p>
 
 ---
 
 ## 🏛️ MP Dashboard
 
-![MP Dashboard](images/mp_dashboard.png)
+<p align="center">
+  <img src="images/mp-dashboard.jpeg" width="90%">
+</p>
 
 ---
 
 ## 🔐 Admin Dashboard
 
-![Admin Dashboard](images/admin_dashboard.png)
+<p align="center">
+  <img src="images/admin-dashboard.jpeg" width="90%">
+</p>
 
 ---
+
+## 📊 Dashboard Overview
+
+<p align="center">
+  <img src="images/dashboard-overview.jpeg" width="90%">
+</p>
 
 ## 🤖 AI Session Summary
 
@@ -429,13 +449,27 @@ git push origin feature-name
 5. Open a Pull Request
 
 ---
+...
+## 📊 Project Statistics
+
+| Feature | Status |
+|---------|--------|
+| AI Integration | ✅ |
+| Django Backend | ✅ |
+| Citizen Portal | ✅ |
+| MP Portal | ✅ |
+| Admin Dashboard | ✅ |
+| Groq LLM | ✅ |
+| Authentication | ✅ |
+| Analytics Dashboard | ✅ |
+
+---
 
 # 📄 License
 
 This project is developed for **academic and educational purposes**.
 
 ---
-
 # 👩‍💻 Author
 
 ## Saloni Sengar
