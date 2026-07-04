@@ -1,0 +1,162 @@
+{% extends 'adminpanel/base_admin.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Admin Dashboard" %}{% endblock %}
+{% block page_title %}{% trans "Dashboard" %}{% endblock %}
+
+{% block content %}
+<!-- Stats Cards -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="bi bi-people"></i>
+            </div>
+            <div class="stat-value">{{ total_users }}</div>
+            <div class="stat-label">{% trans "Total Users" %}</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                <i class="bi bi-person-badge"></i>
+            </div>
+            <div class="stat-value">{{ total_citizens }}</div>
+            <div class="stat-label">{% trans "Citizens" %}</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: linear-gradient(135deg, #ffc107, #fd7e14);">
+                <i class="bi bi-person-workspace"></i>
+            </div>
+            <div class="stat-value">{{ total_mps }}</div>
+            <div class="stat-label">{% trans "MPs" %}</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: linear-gradient(135deg, #dc3545, #c82333);">
+                <i class="bi bi-shield-lock"></i>
+            </div>
+            <div class="stat-value">{{ total_admins }}</div>
+            <div class="stat-label">{% trans "Admins" %}</div>
+        </div>
+    </div>
+</div>
+
+<!-- Complaints Stats -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: linear-gradient(135deg, #17a2b8, #138496);">
+                <i class="bi bi-inbox"></i>
+            </div>
+            <div class="stat-value">{{ total_complaints }}</div>
+            <div class="stat-label">{% trans "Total Complaints" %}</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: linear-gradient(135deg, #ffc107, #e0a800);">
+                <i class="bi bi-hourglass-split"></i>
+            </div>
+            <div class="stat-value">{{ pending_complaints }}</div>
+            <div class="stat-label">{% trans "Pending" %}</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                <i class="bi bi-check-circle"></i>
+            </div>
+            <div class="stat-value">{{ resolved_complaints }}</div>
+            <div class="stat-label">{% trans "Resolved" %}</div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <a href="{% url 'manage_users' %}" class="btn btn-primary w-100 p-3">
+            <i class="bi bi-people me-2"></i>{% trans "Manage Users" %}
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="{% url 'manage_mps' %}" class="btn btn-warning w-100 p-3" style="color: #000;">
+            <i class="bi bi-person-badge me-2"></i>{% trans "Manage MPs" %}
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="{% url 'manage_complaints' %}" class="btn btn-success w-100 p-3">
+            <i class="bi bi-inbox me-2"></i>{% trans "Complaints" %}
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="{% url 'manage_speeches' %}" class="btn btn-info w-100 p-3">
+            <i class="bi bi-mic me-2"></i>{% trans "Speeches" %}
+        </a>
+    </div>
+</div>
+
+<!-- Recent Complaints -->
+<div class="content-card">
+    <div class="content-card-header">
+        <h5 class="content-card-title">
+            <i class="bi bi-clock-history me-2"></i>{% trans "Recent Complaints" %}
+        </h5>
+        <a href="{% url 'manage_complaints' %}" class="btn btn-sm btn-primary">
+            {% trans "View All" %}
+        </a>
+    </div>
+    
+    {% if recent_complaints %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{% trans "Citizen" %}</th>
+                    <th>{% trans "Title" %}</th>
+                    <th>{% trans "Category" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Date" %}</th>
+                    <th>{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for complaint in recent_complaints %}
+                <tr>
+                    <td>{{ complaint.citizen.username }}</td>
+                    <td>{{ complaint.title }}</td>
+                    <td>{{ complaint.category }}</td>
+                    <td>
+                        {% if complaint.status == 'Pending' %}
+                            <span class="badge badge-pending">{% trans "Pending" %}</span>
+                        {% elif complaint.status == 'Resolved' %}
+                            <span class="badge badge-resolved">{% trans "Resolved" %}</span>
+                        {% else %}
+                            <span class="badge badge-inprogress">{{ complaint.status }}</span>
+                        {% endif %}
+
+                    </td>
+                    <td>{{ complaint.created_at|date:"M d, Y" }}</td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-primary">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="text-center py-4">
+        <i class="bi bi-inbox" style="font-size: 3rem; color: rgba(255,255,255,0.3);"></i>
+        <p class="text-muted mt-3">{% trans "No complaints yet" %}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+

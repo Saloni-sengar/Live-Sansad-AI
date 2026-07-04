@@ -1,0 +1,116 @@
+{% extends 'mp/base_mp.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Add Speech" %}{% endblock %}
+
+{% block content %}
+<div class="animate-fade-in">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="page-title">{% trans "Add New Speech" %}</h1>
+                <p class="page-subtitle">{% trans "Share your parliamentary speech with citizens" %}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="content-card">
+                <form method="POST" action="{% url 'add_speech' %}">
+                    {% csrf_token %}
+                    
+                    <div class="mb-4">
+                        <label for="title" class="form-label">
+                            <i class="bi bi-card-heading me-2"></i>{% trans "Speech Title" %}
+                        </label>
+                        <input type="text" class="form-control" id="title" name="title" 
+                               placeholder="{% trans 'Enter the title of your speech' %}" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="speech_text" class="form-label">
+                            <i class="bi bi-text-paragraph me-2"></i>{% trans "Speech Content" %}
+                        </label>
+                        <textarea class="form-control" id="speech_text" name="speech_text" rows="12" 
+                                  placeholder="{% trans 'Write your parliamentary speech here...' %}" required></textarea>
+                        <small class="text-muted">{% trans "Write your complete speech for the parliament" %}</small>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="summary" class="form-label">
+                            <i class="bi bi-lightbulb me-2"></i>{% trans "AI Summary (Optional)" %}
+                        </label>
+                        <textarea class="form-control" id="summary" name="summary" rows="4" 
+                                  placeholder="{% trans 'Provide a brief summary of your speech (optional)' %}"></textarea>
+                        <small class="text-muted">{% trans "An AI-generated summary will be created automatically if left blank" %}</small>
+                    </div>
+                    
+                    <div class="d-flex gap-3">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-send me-2"></i>{% trans "Publish Speech" %}
+                        </button>
+                        <a href="{% url 'mp_dashboard' %}" class="btn btn-outline-secondary">
+                            {% trans "Cancel" %}
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="content-card">
+                <h5 class="content-card-title mb-4">
+                    <i class="bi bi-info-circle me-2"></i>{% trans "Guidelines" %}
+                </h5>
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        {% trans "Be clear and professional" %}
+                    </li>
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        {% trans "Focus on important citizen issues" %}
+                    </li>
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        {% trans "Provide actionable solutions" %}
+                    </li>
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        {% trans "Keep speech concise and impactful" %}
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="content-card mt-4">
+                <h5 class="content-card-title mb-3">
+                    <i class="bi bi-mic me-2"></i>{% trans "Your Recent Speeches" %}
+                </h5>
+                {% if recent_speeches %}
+                    {% for speech in recent_speeches|slice:":3" %}
+                    <div class="border-bottom pb-2 mb-2">
+                        <small class="text-muted">{{ speech.date|date:"M d, Y" }}</small>
+                        <p class="mb-0 fw-medium">{{ speech.title }}</p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted">{% trans "No speeches yet" %}</p>
+                {% endif %}
+            </div>
+            
+            <div class="content-card mt-4" style="background: linear-gradient(135deg, #f3e8ff 0%, #e4d4ff 100%); border: none;">
+                <h5 class="content-card-title mb-3">
+                    <i class="bi bi-lightbulb me-2"></i>{% trans "AI Assistant" %}
+                </h5>
+                <p class="text-muted small">{% trans "Need help drafting your speech? Use our AI assistant to generate ideas and suggestions." %}</p>
+                <button class="btn btn-sm btn-primary w-100">
+                    <i class="bi bi-stars me-2"></i>{% trans "Get AI Help" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

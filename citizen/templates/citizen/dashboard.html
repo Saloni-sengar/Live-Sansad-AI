@@ -1,0 +1,171 @@
+{% extends 'citizen/base_citizen.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Citizen Dashboard" %}{% endblock %}
+
+{% block content %}
+<div class="animate-fade-in">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="page-title">{% trans "Welcome, " %}{{ user.username }}!</h1>
+                <p class="page-subtitle">{% trans "Track your complaints and stay connected with parliament" %}</p>
+            </div>
+            <a href="{% url 'submit_complaint' %}" class="btn btn-primary">
+                <i class="bi bi-plus-lg me-2"></i>{% trans "New Complaint" %}
+            </a>
+        </div>
+    </div>
+    
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stat-card animate-fade-in delay-1">
+                <div class="stat-icon blue">
+                    <i class="bi bi-file-earmark-text"></i>
+                </div>
+                <div class="stat-value">{{ total_complaints }}</div>
+                <div class="stat-label">{% trans "Total Complaints" %}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card animate-fade-in delay-2">
+                <div class="stat-icon orange">
+                    <i class="bi bi-hourglass-split"></i>
+                </div>
+                <div class="stat-value">{{ pending_complaints }}</div>
+                <div class="stat-label">{% trans "Pending" %}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card animate-fade-in delay-2">
+                <div class="stat-icon purple">
+                    <i class="bi bi-arrow-repeat"></i>
+                </div>
+                <div class="stat-value">{{ in_progress_complaints }}</div>
+                <div class="stat-label">{% trans "In Progress" %}</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card animate-fade-in delay-3">
+                <div class="stat-icon green">
+                    <i class="bi bi-check-circle"></i>
+                </div>
+                <div class="stat-value">{{ resolved_complaints }}</div>
+                <div class="stat-label">{% trans "Resolved" %}</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Complaints -->
+    <div class="content-card">
+        <div class="content-card-header">
+            <h3 class="content-card-title">
+                <i class="bi bi-clock-history me-2"></i>{% trans "Recent Complaints" %}
+            </h3>
+            <a href="{% url 'my_complaints' %}" class="btn btn-success">
+                {% trans "View All" %}
+            </a>
+        </div>
+        
+        {% if complaints %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{% trans "Title" %}</th>
+                        <th>{% trans "Category" %}</th>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Date" %}</th>
+                        <th>{% trans "Actions" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complaint in complaints %}
+                    <tr>
+                        <td>
+                            <strong>{{ complaint.title }}</strong>
+                        </td>
+                        <td>
+                            <span class="badge bg-info bg-opacity-10 text-info">{{ complaint.category }}</span>
+                        </td>
+                        <td>
+                            {% if complaint.status == 'Pending' %}
+                                <span class="badge-pending">{{ complaint.status }}</span>
+                            {% elif complaint.status == 'Resolved' %}
+                                <span class="badge-resolved">{{ complaint.status }}</span>
+                            {% else %}
+                                <span class="badge-in-progress">{{ complaint.status }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ complaint.created_at|date:"M d, Y" }}</td>
+                        <td>
+                            <a href="{% url 'complaint_detail' complaint.id %}" class="btn btn-sm btn-primary">
+                                <i class="bi bi-eye"></i> {% trans "View" %}
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <i class="bi bi-inbox" style="font-size: 4rem; color: #dee2e6;"></i>
+            <h4 class="mt-3 text-muted">{% trans "No complaints yet" %}</h4>
+            <p class="text-muted">{% trans "Submit your first complaint to get started" %}</p>
+            <a href="{% url 'submit_complaint' %}" class="btn btn-primary mt-2">
+                <i class="bi bi-plus-lg me-2"></i>{% trans "Submit Complaint" %}
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- Quick Actions -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="content-card">
+                <h5 class="content-card-title mb-4">
+                    <i class="bi bi-lightning-charge me-2"></i>{% trans "Quick Actions" %}
+                </h5>
+                <div class="d-grid gap-3">
+                    <a href="{% url 'submit_complaint' %}" class="btn btn-outline-primary text-start p-3">
+                        <i class="bi bi-pencil-square me-2"></i>{% trans "Submit New Complaint" %}
+                    </a>
+                    <a href="{% url 'citizen_speeches' %}" class="btn btn-outline-primary text-start p-3">
+                        <i class="bi bi-mic me-2"></i>{% trans "View Parliament Speeches" %}
+                    </a>
+                    <a href="{% url 'citizen_profile' %}" class="btn btn-outline-primary text-start p-3">
+                        <i class="bi bi-person-circle me-2"></i>{% trans "Update My Profile" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="content-card">
+                <h5 class="content-card-title mb-4">
+                    <i class="bi bi-megaphone me-2"></i>{% trans "Latest Parliament Speeches" %}
+                </h5>
+                {% if latest_speeches %}
+                    {% for speech in latest_speeches|slice:":3" %}
+                    <div class="border-bottom pb-3 mb-3">
+                        <h6 class="mb-1">{{ speech.title }}</h6>
+                        <small class="text-muted">
+                            <i class="bi bi-person me-1"></i>{{ speech.mp.username }} | 
+                            <i class="bi bi-calendar me-1"></i>{{ speech.date }}
+                        </small>
+                    </div>
+                    {% endfor %}
+                    <a href="{% url 'citizen_speeches' %}" class="btn btn-sm btn-success">
+                        {% trans "View All Speeches" %}
+                    </a>
+                {% else %}
+                    <p class="text-muted text-center py-3">{% trans "No speeches available" %}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

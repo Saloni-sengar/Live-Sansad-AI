@@ -1,0 +1,352 @@
+# English translations for AI Parliament project.
+# Copyright (C) 2024 AI Parliament
+# This file is distributed under the same license as the AI Parliament project.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: AI Parliament 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 12:00+0000\n"
+"PO-Revision-Date: 2024-01-01 12:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: core/templates/base.html
+msgid "AI Parliament"
+msgstr "AI Parliament"
+
+#: core/templates/base.html
+msgid "Home"
+msgstr "Home"
+
+#: core/templates/base.html
+msgid "About"
+msgstr "About"
+
+#: core/templates/base.html
+msgid "Features"
+msgstr "Features"
+
+#: core/templates/base.html
+msgid "Contact"
+msgstr "Contact"
+
+#: core/templates/base.html
+msgid "Login"
+msgstr "Login"
+
+#: core/templates/base.html
+msgid "Empowering Democracy with Artificial Intelligence"
+msgstr "Empowering Democracy with Artificial Intelligence"
+
+#: core/templates/landing.html
+msgid "Welcome"
+msgstr "Welcome"
+
+#: core/templates/landing.html
+msgid "AI Powered"
+msgstr "AI Powered"
+
+#: core/templates/landing.html
+msgid "Parliament System"
+msgstr "Parliament System"
+
+#: core/templates/landing.html
+msgid "Bridging the gap between Citizens and Parliament using Artificial Intelligence"
+msgstr "Bridging the gap between Citizens and Parliament using Artificial Intelligence"
+
+#: core/templates/landing.html
+msgid "Submit issues, get responses from MPs, and experience intelligent parliamentary analysis."
+msgstr "Submit issues, get responses from MPs, and experience intelligent parliamentary analysis."
+
+#: core/templates/landing.html
+msgid "Citizen Register"
+msgstr "Citizen Register"
+
+#: core/templates/landing.html
+msgid "Our Features"
+msgstr "Our Features"
+
+#: core/templates/landing.html
+msgid "Citizen Issues"
+msgstr "Citizen Issues"
+
+#: core/templates/landing.html
+msgid "Citizens can directly submit their problems and concerns to the parliament system."
+msgstr "Citizens can directly submit their problems and concerns to the parliament system."
+
+#: core/templates/landing.html
+msgid "Easy registration and issue tracking for transparent resolution."
+msgstr "Easy registration and issue tracking for transparent resolution."
+
+#: core/templates/landing.html
+msgid "MP Response"
+msgstr "MP Response"
+
+#: core/templates/landing.html
+msgid "Members of Parliament can review and respond to citizen queries efficiently."
+msgstr "Members of Parliament can review and respond to citizen queries efficiently."
+
+#: core/templates/landing.html
+msgid "Direct communication channel between representatives and constituents."
+msgstr "Direct communication channel between representatives and constituents."
+
+#: core/templates/landing.html
+msgid "AI Analysis"
+msgstr "AI Analysis"
+
+#: core/templates/landing.html
+msgid "Advanced AI technology to summarize parliamentary speeches and debates."
+msgstr "Advanced AI technology to summarize parliamentary speeches and debates."
+
+#: core/templates/landing.html
+msgid "Get intelligent insights from government proceedings."
+msgstr "Get intelligent insights from government proceedings."
+
+#: core/templates/landing.html
+msgid "About AI Parliament"
+msgstr "About AI Parliament"
+
+#: core/templates/landing.html
+msgid "AI Parliament is a modern platform that leverages artificial intelligence to bridge the gap between citizens and their elected representatives. Our system provides a transparent, efficient, and accessible way for people to voice their concerns."
+msgstr "AI Parliament is a modern platform that leverages artificial intelligence to bridge the gap between citizens and their elected representatives. Our system provides a transparent, efficient, and accessible way for people to voice their concerns."
+
+#: core/templates/landing.html
+msgid "Secure citizen registration and authentication"
+msgstr "Secure citizen registration and authentication"
+
+#: core/templates/landing.html
+msgid "Real-time issue tracking and status updates"
+msgstr "Real-time issue tracking and status updates"
+
+#: core/templates/landing.html
+msgid "AI-powered speech summarization"
+msgstr "AI-powered speech summarization"
+
+#: core/templates/landing.html
+msgid "Multi-language support for accessibility"
+msgstr "Multi-language support for accessibility"
+
+#: core/templates/landing.html
+msgid "Active Citizens"
+msgstr "Active Citizens"
+
+#: core/templates/landing.html
+msgid "MPs Registered"
+msgstr "MPs Registered"
+
+#: core/templates/landing.html
+msgid "Issues Resolved"
+msgstr "Issues Resolved"
+
+#: core/templates/landing.html
+msgid "Select Your Preferred Language"
+msgstr "Select Your Preferred Language"
+
+#: core/templates/landing.html
+msgid "Choose your language to experience the platform in your preferred language"
+msgstr "Choose your language to experience the platform in your preferred language"
+
+#: core/templates/landing.html
+msgid "Ready to Connect with Your Parliament?"
+msgstr "Ready to Connect with Your Parliament?"
+
+#: core/templates/landing.html
+msgid "Join thousands of citizens who are actively engaging with their representatives"
+msgstr "Join thousands of citizens who are actively engaging with their representatives"
+
+#: core/templates/landing.html
+msgid "Get Started Today"
+msgstr "Get Started Today"
+
+#: accounts/templates/accounts/login.html
+msgid "Welcome Back"
+msgstr "Welcome Back"
+
+#: accounts/templates/accounts/login.html
+msgid "Login to access your AI Parliament account"
+msgstr "Login to access your AI Parliament account"
+
+#: accounts/templates/accounts/login.html
+msgid "Username"
+msgstr "Username"
+
+#: accounts/templates/accounts/login.html
+msgid "Enter your username"
+msgstr "Enter your username"
+
+#: accounts/templates/accounts/login.html
+msgid "Password"
+msgstr "Password"
+
+#: accounts/templates/accounts/login.html
+msgid "Enter your password"
+msgstr "Enter your password"
+
+#: accounts/templates/accounts/login.html
+msgid "Forgot Password?"
+msgstr "Forgot Password?"
+
+#: accounts/templates/accounts/login.html
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
+
+#: accounts/templates/accounts/login.html
+msgid "Register as Citizen"
+msgstr "Register as Citizen"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Citizen Registration"
+msgstr "Citizen Registration"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Create your account to connect with Parliament"
+msgstr "Create your account to connect with Parliament"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Email"
+msgstr "Email"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Enter your email"
+msgstr "Enter your email"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Create a password"
+msgstr "Create a password"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Confirm your password"
+msgstr "Confirm your password"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Choose a username"
+msgstr "Choose a username"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "I agree to the"
+msgstr "I agree to the"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Terms and Conditions"
+msgstr "Terms and Conditions"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "and"
+msgstr "and"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Register"
+msgstr "Register"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Login here"
+msgstr "Login here"
+
+#: accounts/templates/accounts/login.html
+msgid "Welcome Back"
+msgstr "Welcome Back"
+
+#: accounts/templates/accounts/login.html
+msgid "Login to access your AI Parliament account"
+msgstr "Login to access your AI Parliament account"
+
+#: accounts/templates/accounts/login.html
+msgid "Username"
+msgstr "Username"
+
+#: accounts/templates/accounts/login.html
+msgid "Enter your username"
+msgstr "Enter your username"
+
+#: accounts/templates/accounts/login.html
+msgid "Password"
+msgstr "Password"
+
+#: accounts/templates/accounts/login.html
+msgid "Enter your password"
+msgstr "Enter your password"
+
+#: accounts/templates/accounts/login.html
+msgid "Forgot Password?"
+msgstr "Forgot Password?"
+
+#: accounts/templates/accounts/login.html
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
+
+#: accounts/templates/accounts/login.html
+msgid "Register as Citizen"
+msgstr "Register as Citizen"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Citizen Registration"
+msgstr "Citizen Registration"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Create your account to connect with Parliament"
+msgstr "Create your account to connect with Parliament"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Email"
+msgstr "Email"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Enter your email"
+msgstr "Enter your email"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Choose a username"
+msgstr "Choose a username"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Create a password"
+msgstr "Create a password"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Confirm your password"
+msgstr "Confirm your password"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "I agree to the"
+msgstr "I agree to the"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Terms and Conditions"
+msgstr "Terms and Conditions"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "and"
+msgstr "and"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Register"
+msgstr "Register"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Login here"
+msgstr "Login here"

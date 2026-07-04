@@ -1,0 +1,457 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE|default:"en" }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% trans "Citizen Portal" %}{% endblock %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+        }
+        
+        .sidebar {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-brand {
+            padding: 25px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-brand h4 {
+            color: #fff;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sidebar-brand i {
+            color: #00d4ff;
+            font-size: 1.5rem;
+        }
+        
+        .nav-item {
+            margin: 5px 10px;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.7) !important;
+            font-weight: 500;
+            padding: 12px 20px !important;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .nav-link:hover {
+            background: rgba(0,212,255,0.15);
+            color: #fff !important;
+            transform: translateX(5px);
+        }
+        
+        .nav-link.active {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: #fff !important;
+            box-shadow: 0 4px 15px rgba(0,212,255,0.3);
+        }
+        
+        .nav-link i {
+            font-size: 1.2rem;
+        }
+        
+        .main-content {
+            padding: 30px;
+        }
+        
+        .page-header {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin: 0;
+        }
+        
+        .page-subtitle {
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        .stat-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .stat-icon.blue {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f7 100%);
+            color: #0099cc;
+        }
+        
+        .stat-icon.green {
+            background: linear-gradient(135deg, #e8f8f0 0%, #d4f7e9 100%);
+            color: #00cc66;
+        }
+        
+        .stat-icon.orange {
+            background: linear-gradient(135deg, #fef3e2 0%, #fde4c4 100%);
+            color: #ff9900;
+        }
+        
+        .stat-icon.purple {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e4d4ff 100%);
+            color: #9933ff;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .content-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        
+        .content-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .content-card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin: 0;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,212,255,0.4);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .table {
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+        
+        .table thead th {
+            background: #f8f9fa;
+            border: none;
+            padding: 15px 20px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        
+        .table tbody tr {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .table tbody tr:hover {
+            transform: scale(1.01);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .table tbody td {
+            padding: 15px 20px;
+            vertical-align: middle;
+            border: none;
+        }
+        
+        .badge-pending {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            color: #e65100;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .badge-resolved {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            color: #2e7d32;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .badge-in-progress {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            color: #1565c0;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            margin: 20px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .user-details h6 {
+            color: #fff;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .user-details small {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .logout-btn {
+            margin: 20px;
+            padding: 12px 20px;
+            background: rgba(255,107,107,0.2);
+            border: 1px solid rgba(255,107,107,0.3);
+            color: #ff6b6b;
+            border-radius: 12px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255,107,107,0.3);
+            color: #fff;
+        }
+        
+        /* Form Styles */
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0,212,255,0.1);
+        }
+        
+        .form-label {
+            font-weight: 500;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                z-index: 1000;
+                width: 250px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar" id="sidebar">
+                <div class="sidebar-brand">
+                    <h4><i class="bi bi-building"></i> {% trans "AI Parliament" %}</h4>
+                </div>
+                
+                <div class="user-info">
+                    <div class="user-avatar">{{ user.username|make_list|first|upper }}</div>
+                    <div class="user-details">
+                        <h6>{{ user.username }}</h6>
+                        <small>{% trans "Citizen" %}</small>
+                    </div>
+                </div>
+                
+                <ul class="nav flex-column mt-3">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'citizen_dashboard' %}active{% endif %}" 
+                           href="{% url 'citizen_dashboard' %}">
+                            <i class="bi bi-speedometer2"></i> {% trans "Dashboard" %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'submit_complaint' %}active{% endif %}" 
+                           href="{% url 'submit_complaint' %}">
+                            <i class="bi bi-pencil-square"></i> {% trans "Submit Complaint" %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'my_complaints' %}active{% endif %}" 
+                           href="{% url 'my_complaints' %}">
+                            <i class="bi bi-chat-square-text"></i> {% trans "My Complaints" %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'citizen_speeches' %}active{% endif %}" 
+                           href="{% url 'citizen_speeches' %}">
+                            <i class="bi bi-mic"></i> {% trans "Parliament Speeches" %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'citizen_profile' %}active{% endif %}" 
+                           href="{% url 'citizen_profile' %}">
+                            <i class="bi bi-person-circle"></i> {% trans "My Profile" %}
+                        </a>
+                    </li>
+                </ul>
+                
+                <a href="{% url 'logout' %}" class="logout-btn">
+                    <i class="bi bi-box-arrow-left"></i> {% trans "Logout" %}
+                </a>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
+

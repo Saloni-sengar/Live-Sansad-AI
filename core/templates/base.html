@@ -1,0 +1,452 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE|default:"en" }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% trans "AI Parliament" %}{% endblock %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+            padding: 15px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff !important;
+            letter-spacing: 1px;
+        }
+        
+        .navbar-brand i {
+            color: #00d4ff;
+            margin-right: 8px;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            font-weight: 500;
+            padding: 8px 20px !important;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #fff !important;
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            border: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,212,255,0.4);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 12px 40px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102,126,234,0.5);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 100px 0;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        
+        .hero-title span {
+            background: linear-gradient(135deg, #00d4ff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+        }
+        
+        .features-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #00d4ff, #667eea);
+            border-radius: 2px;
+        }
+        
+        .feature-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: transparent;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f7 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: #0099cc;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: #fff;
+        }
+        
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+        }
+        
+        .feature-text {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .language-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        /* Language Selector Styles */
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #fff;
+            border: 2px solid #dee2e6;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #495057;
+        }
+        
+        .language-btn:hover {
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0,212,255,0.1);
+        }
+        
+        .language-btn .flag-icon {
+            font-size: 1.2rem;
+        }
+        
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 8px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .language-selector:hover .language-dropdown,
+        .language-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(5px);
+        }
+        
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: #495057;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .language-option:hover {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f7 100%);
+            color: #0099cc;
+        }
+        
+        .language-option.active {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: #fff;
+        }
+        
+        .language-option .flag-icon {
+            font-size: 1.3rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 30px 0;
+        }
+        
+        footer p {
+            color: rgba(255,255,255,0.7);
+            margin: 0;
+            font-size: 1rem;
+        }
+        
+        footer i {
+            color: #00d4ff;
+            margin: 0 5px;
+        }
+        
+        /* Animation for page load */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .language-dropdown {
+                left: 0;
+                transform: none;
+            }
+            
+            .language-selector:hover .language-dropdown,
+            .language-dropdown.show {
+                transform: translateY(5px);
+            }
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-building"></i>{% trans "AI Parliament" %}
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-4">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">{% trans "Home" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">{% trans "About" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">{% trans "Features" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">{% trans "Contact" %}</a>
+                    </li>
+                </ul>
+                
+                <!-- Language Selector -->
+                <div class="language-selector me-3">
+                    <button class="language-btn" type="button">
+                        <span class="flag-icon">{% if request.LANGUAGE_CODE == 'hi' %}🇮🇳{% else %}🇬🇧{% endif %}</span>
+                        <span class="lang-name">{% if request.LANGUAGE_CODE == 'hi' %}हिंदी{% else %}English{% endif %}</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="language-dropdown">
+                        <form action="{% url 'set_language' %}" method="post" id="language-form">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ request.path }}">
+                            <input name="language" type="hidden" value="en">
+                            
+                            <a href="#" class="language-option {% if request.LANGUAGE_CODE == 'en' or not request.LANGUAGE_CODE %}active{% endif %}" 
+                               onclick="changeLanguage('en'); return false;">
+                                <span class="flag-icon">🇬🇧</span>
+                                <span>English</span>
+                            </a>
+                            <a href="#" class="language-option {% if request.LANGUAGE_CODE == 'hi' %}active{% endif %}"
+                               onclick="changeLanguage('hi'); return false;">
+                                <span class="flag-icon">🇮🇳</span>
+                                <span>हिंदी (Hindi)</span>
+                            </a>
+                            <a href="#" class="language-option" onclick="changeLanguage('bn'); return false;">
+                                <span class="flag-icon">🇧🇩</span>
+                                <span>বাংলা (Bengali)</span>
+                            </a>
+                            <a href="#" class="language-option" onclick="changeLanguage('ta'); return false;">
+                                <span class="flag-icon">🇱🇰</span>
+                                <span>தமிழ் (Tamil)</span>
+                            </a>
+                            <a href="#" class="language-option" onclick="changeLanguage('te'); return false;">
+                                <span class="flag-icon">🇮🇳</span>
+                                <span>తెలుగు (Telugu)</span>
+                            </a>
+                            <a href="#" class="language-option" onclick="changeLanguage('mr'); return false;">
+                                <span class="flag-icon">🇮🇳</span>
+                                <span>मराठी (Marathi)</span>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+                
+<a href="{% url 'login' %}" class="btn btn-success">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>{% trans "Login" %}
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container text-center">
+            <p>
+                <i class="bi bi-c-circle"></i> 2024 AI Parliament Project. 
+                {% trans "Empowering Democracy with Artificial Intelligence" %}.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function changeLanguage(lang) {
+            const form = document.getElementById('language-form');
+            const languageInput = form.querySelector('input[name="language"]');
+            languageInput.value = lang;
+            form.submit();
+        }
+        
+        // Update language button text based on selection
+        document.addEventListener('DOMContentLoaded', function() {
+            const langName = document.querySelector('.lang-name');
+            const currentLang = '{{ request.LANGUAGE_CODE|default:"en" }}';
+            
+            const langNames = {
+                'en': 'English',
+                'hi': 'हिंदी',
+                'bn': 'বাংলা',
+                'ta': 'தமிழ்',
+                'te': 'తెలుగు',
+                'mr': 'मराठी'
+            };
+            
+            if (langNames[currentLang]) {
+                langName.textContent = langNames[currentLang];
+            }
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
+

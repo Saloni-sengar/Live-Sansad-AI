@@ -1,0 +1,175 @@
+{% extends 'citizen/base_citizen.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Complaint Details" %}{% endblock %}
+
+{% block content %}
+<div class="animate-fade-in">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="page-title">{% trans "Complaint Details" %}</h1>
+                <p class="page-subtitle">{% trans "View your complaint status and responses" %}</p>
+            </div>
+            <a href="{% url 'my_complaints' %}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left me-2"></i>{% trans "Back to Complaints" %}
+            </a>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- Complaint Info -->
+        <div class="col-lg-8">
+            <div class="content-card">
+                <div class="d-flex justify-content-between align-items-start mb-4">
+                    <div>
+                        <h3 class="mb-2">{{ complaint.title }}</h3>
+                        <span class="badge bg-info bg-opacity-10 text-info me-2">{{ complaint.category }}</span>
+                        {% if complaint.status == 'Pending' %}
+                            <span class="badge-pending">{{ complaint.status }}</span>
+                        {% elif complaint.status == 'Resolved' %}
+                            <span class="badge-resolved">{{ complaint.status }}</span>
+                        {% else %}
+                            <span class="badge-in-progress">{{ complaint.status }}</span>
+                        {% endif %}
+                    </div>
+                    <small class="text-muted">
+                        <i class="bi bi-calendar3 me-1"></i>{{ complaint.created_at|date:"F d, Y" }}
+                    </small>
+                </div>
+                
+                <div class="mb-4">
+                    <h5 class="mb-3">
+                        <i class="bi bi-text-paragraph me-2"></i>{% trans "Description" %}
+                    </h5>
+                    <p class="text-muted" style="line-height: 1.8;">{{ complaint.description }}</p>
+                </div>
+                
+                {% if complaint.mp_reply %}
+                <div class="alert alert-success" style="border-radius: 15px; border: none; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+                    <h5 class="mb-3">
+                        <i class="bi bi-check-circle me-2"></i>{% trans "MP Response" %}
+                    </h5>
+                    <p class="mb-0" style="line-height: 1.8;">{{ complaint.mp_reply }}</p>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Timeline -->
+            <div class="content-card mt-4">
+                <h5 class="content-card-title mb-4">
+                    <i class="bi bi-clock-history me-2"></i>{% trans "Status Timeline" %}
+                </h5>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot pending"></div>
+                        <div class="timeline-content">
+                            <h6>{% trans "Complaint Submitted" %}</h6>
+                            <small class="text-muted">{{ complaint.created_at|date:"F d, Y - g:i A" }}</small>
+                        </div>
+                    </div>
+                    {% if complaint.status != 'Pending' %}
+                    <div class="timeline-item">
+                        <div class="timeline-dot in-progress"></div>
+                        <div class="timeline-content">
+                            <h6>{% trans "Under Review" %}</h6>
+                            <small class="text-muted">{% trans "Your complaint is being reviewed by an MP" %}</small>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if complaint.status == 'Resolved' %}
+                    <div class="timeline-item">
+                        <div class="timeline-dot resolved"></div>
+                        <div class="timeline-content">
+                            <h6>{% trans "Resolved" %}</h6>
+                            <small class="text-muted">{% trans "Your complaint has been addressed" %}</small>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="content-card">
+                <h5 class="content-card-title mb-4">
+                    <i class="bi bi-info-circle me-2"></i>{% trans "Complaint Info" %}
+                </h5>
+                <ul class="list-unstyled">
+                    <li class="mb-3 pb-3 border-bottom">
+                        <small class="text-muted d-block">{% trans "Complaint ID" %}</small>
+                        <strong>#{{ complaint.id }}</strong>
+                    </li>
+                    <li class="mb-3 pb-3 border-bottom">
+                        <small class="text-muted d-block">{% trans "Category" %}</small>
+                        <strong>{{ complaint.category }}</strong>
+                    </li>
+                    <li class="mb-3 pb-3 border-bottom">
+                        <small class="text-muted d-block">{% trans "Status" %}</small>
+                        <strong>{{ complaint.status }}</strong>
+                    </li>
+                    <li class="mb-3 pb-3 border-bottom">
+                        <small class="text-muted d-block">{% trans "Submitted On" %}</small>
+                        <strong>{{ complaint.created_at|date:"M d, Y" }}</strong>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="content-card mt-4">
+                <h5 class="content-card-title mb-3">
+                    <i class="bi bi-question-circle me-2"></i>{% trans "Need Help?" %}
+                </h5>
+                <p class="text-muted small">{% trans "If you have any questions about your complaint, please contact support." %}</p>
+                <a href="#" class="btn btn-outline-primary w-100">
+                    <i class="bi bi-chat-dots me-2"></i>{% trans "Contact Support" %}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+    }
+    
+    .timeline-item {
+        position: relative;
+        padding-bottom: 25px;
+    }
+    
+    .timeline-item:last-child {
+        padding-bottom: 0;
+    }
+    
+    .timeline-dot {
+        position: absolute;
+        left: -30px;
+        top: 0;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+    }
+    
+    .timeline-dot.pending {
+        background: linear-gradient(135deg, #ff9800 0%, #ffb74d 100%);
+    }
+    
+    .timeline-dot.in-progress {
+        background: linear-gradient(135deg, #2196f3 0%, #64b5f6 100%);
+    }
+    
+    .timeline-dot.resolved {
+        background: linear-gradient(135deg, #4caf50 0%, #81c784 100%);
+    }
+    
+    .timeline-content h6 {
+        margin: 0;
+        color: #1a1a2e;
+    }
+</style>
+{% endblock %}
+

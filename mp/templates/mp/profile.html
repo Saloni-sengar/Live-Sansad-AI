@@ -1,0 +1,196 @@
+{% extends 'mp/base_mp.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "MP Profile" %}{% endblock %}
+
+{% block content %}
+<div class="animate-fade-in">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="page-title">{% trans "My Profile" %}</h1>
+                <p class="page-subtitle">{% trans "Manage your account and view your statistics" %}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- Profile Card -->
+        <div class="col-lg-4">
+            <div class="content-card text-center">
+                <div class="profile-avatar mx-auto mb-4">
+                    {{ user.username|make_list|first|upper }}
+                </div>
+                <h3>{{ user.username }}</h3>
+                <p class="text-muted">{% trans "Member of Parliament" %}</p>
+                <span class="badge bg-primary">{% trans "Verified MP" %}</span>
+                <hr>
+                <div class="text-start">
+                    <p class="mb-2">
+                        <i class="bi bi-envelope me-2"></i>
+                        <strong>{% trans "Email:" %}</strong> {{ user.email|default:"Not provided" }}
+                    </p>
+                    <p class="mb-2">
+                        <i class="bi bi-calendar me-2"></i>
+                        <strong>{% trans "Member Since:" %}</strong> {{ user.date_joined|date:"M Y" }}
+                    </p>
+                </div>
+            </div>
+            
+            <div class="content-card mt-4">
+                <h5 class="content-card-title mb-4">
+                    <i class="bi bi-bar-chart me-2"></i>{% trans "Performance Statistics" %}
+                </h5>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span>{% trans "Complaints Resolved" %}</span>
+                        <strong>{{ resolved_complaints }}</strong>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar" style="width: 75%; background: linear-gradient(135deg, #10b981 0%, #059669 100%);"></div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span>{% trans "Speeches Delivered" %}</span>
+                        <strong>{{ total_speeches }}</strong>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar" style="width: 100%; background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);"></div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span>{% trans "Response Rate" %}</span>
+                        <strong>75%</strong>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar" style="width: 75%; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Edit Profile Form -->
+        <div class="col-lg-8">
+            <div class="content-card">
+                <h5 class="content-card-title mb-4">
+                    <i class="bi bi-pencil-square me-2"></i>{% trans "Edit Profile" %}
+                </h5>
+                <form method="POST" action="{% url 'mp_profile' %}">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="username" class="form-label">{% trans "Username" %}</label>
+                            <input type="text" class="form-control" id="username" value="{{ user.username }}" disabled>
+                            <small class="text-muted">{% trans "Username cannot be changed" %}</small>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="email" class="form-label">{% trans "Email Address" %}</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="first_name" class="form-label">{% trans "First Name" %}</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" 
+                                   value="{{ user.first_name }}">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="last_name" class="form-label">{% trans "Last Name" %}</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" 
+                                   value="{{ user.last_name }}">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="constituency" class="form-label">{% trans "Constituency" %}</label>
+                        <input type="text" class="form-control" id="constituency" name="constituency" 
+                               placeholder="{% trans 'Enter your constituency' %}">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="bio" class="form-label">{% trans "Biography" %}</label>
+                        <textarea class="form-control" id="bio" name="bio" rows="4" 
+                                  placeholder="{% trans 'Write a short biography...' %}"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-lg me-2"></i>{% trans "Save Changes" %}
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Change Password -->
+            <div class="content-card mt-4">
+                <h5 class="content-card-title mb-4">
+                    <i class="bi bi-shield-lock me-2"></i>{% trans "Change Password" %}
+                </h5>
+                <form>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="current_password" class="form-label">{% trans "Current Password" %}</label>
+                            <input type="password" class="form-control" id="current_password">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="new_password" class="form-label">{% trans "New Password" %}</label>
+                            <input type="password" class="form-control" id="new_password">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="confirm_password" class="form-label">{% trans "Confirm Password" %}</label>
+                            <input type="password" class="form-control" id="confirm_password">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="bi bi-key me-2"></i>{% trans "Update Password" %}
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Notification Settings -->
+            <div class="content-card mt-4">
+                <h5 class="content-card-title mb-4">
+                    <i class="bi bi-bell me-2"></i>{% trans "Notification Settings" %}
+                </h5>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" id="email_notifications" checked>
+                    <label class="form-check-label" for="email_notifications">
+                        {% trans "Email notifications for new complaints" %}
+                    </label>
+                </div>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" id="sms_notifications">
+                    <label class="form-check-label" for="sms_notifications">
+                        {% trans "SMS alerts for urgent complaints" %}
+                    </label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="newsletter" checked>
+                    <label class="form-check-label" for="newsletter">
+                        {% trans "Receive parliamentary updates" %}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 3rem;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
+

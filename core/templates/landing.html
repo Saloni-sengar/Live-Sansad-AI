@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Welcome" %} - {% trans "AI Parliament" %}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center hero-content">
+                <h1 class="hero-title animate-fade-in">
+                    {% trans "AI Powered" %} <span>{% trans "Parliament System" %}</span>
+                </h1>
+                <p class="hero-subtitle animate-fade-in delay-1">
+                    {% trans "Bridging the gap between Citizens and Parliament using Artificial Intelligence" %}<br>
+                    {% trans "Submit issues, get responses from MPs, and experience intelligent parliamentary analysis." %}
+                </p>
+                <div class="animate-fade-in delay-2">
+                    <a href="{% url 'citizen_register' %}" class="btn btn-primary me-3">
+                        <i class="bi bi-person-plus me-2"></i>{% trans "Citizen Register" %}
+                    </a>
+                    <a href="{% url 'login' %}" class="btn btn-outline-light ms-2" style="border-radius: 25px; padding: 12px 35px;">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>{% trans "Login" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features-section">
+    <div class="container">
+        <h2 class="section-title text-center animate-fade-in">{% trans "Our Features" %}</h2>
+        <div class="row g-4">
+            <div class="col-md-4 animate-fade-in delay-1">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-exclamation-circle"></i>
+                    </div>
+                    <h4 class="feature-title">{% trans "Citizen Issues" %}</h4>
+                    <p class="feature-text">
+                        {% trans "Citizens can directly submit their problems and concerns to the parliament system." %}
+                        {% trans "Easy registration and issue tracking for transparent resolution." %}
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 animate-fade-in delay-2">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-person-badge"></i>
+                    </div>
+                    <h4 class="feature-title">{% trans "MP Response" %}</h4>
+                    <p class="feature-text">
+                        {% trans "Members of Parliament can review and respond to citizen queries efficiently." %}
+                        {% trans "Direct communication channel between representatives and constituents." %}
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 animate-fade-in delay-3">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-cpu"></i>
+                    </div>
+                    <h4 class="feature-title">{% trans "AI Analysis" %}</h4>
+                    <p class="feature-text">
+                        {% trans "Advanced AI technology to summarize parliamentary speeches and debates." %}
+                        {% trans "Get intelligent insights from government proceedings." %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 animate-fade-in">
+                <h2 class="fw-bold mb-4" style="color: #1a1a2e;">{% trans "About AI Parliament" %}</h2>
+                <p class="text-muted mb-4">
+                    {% trans "AI Parliament is a modern platform that leverages artificial intelligence to bridge the gap between citizens and their elected representatives. Our system provides a transparent, efficient, and accessible way for people to voice their concerns." %}
+                </p>
+                <ul class="list-unstyled">
+                    <li class="mb-3 animate-fade-in delay-1">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        <span class="text-muted">{% trans "Secure citizen registration and authentication" %}</span>
+                    </li>
+                    <li class="mb-3 animate-fade-in delay-2">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        <span class="text-muted">{% trans "Real-time issue tracking and status updates" %}</span>
+                    </li>
+                    <li class="mb-3 animate-fade-in delay-3">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        <span class="text-muted">{% trans "AI-powered speech summarization" %}</span>
+                    </li>
+                    <li class="mb-3 animate-fade-in delay-4">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        <span class="text-muted">{% trans "Multi-language support for accessibility" %}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 text-center animate-fade-in delay-2">
+                <div style="font-size: 150px; color: #0099cc;">
+                    <i class="bi bi-building"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4 animate-fade-in delay-1">
+                <h2 class="fw-bold" style="color: #00d4ff; font-size: 3rem;">10K+</h2>
+                <p class="text-white-50">{% trans "Active Citizens" %}</p>
+            </div>
+            <div class="col-md-4 mb-4 animate-fade-in delay-2">
+                <h2 class="fw-bold" style="color: #00d4ff; font-size: 3rem;">500+</h2>
+                <p class="text-white-50">{% trans "MPs Registered" %}</p>
+            </div>
+            <div class="col-md-4 mb-4 animate-fade-in delay-3">
+                <h2 class="fw-bold" style="color: #00d4ff; font-size: 3rem;">50K+</h2>
+                <p class="text-white-50">{% trans "Issues Resolved" %}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Language Selection Section -->
+<!-- <section class="language-section">
+    <div class="container text-center">
+        <h3 class="mb-4 animate-fade-in" style="color: #1a1a2e;">{% trans "Select Your Preferred Language" %}</h3>
+        <p class="mb-4 text-muted animate-fade-in delay-1">{% trans "Choose your language to experience the platform in your preferred language" %}</p>
+        
+        <div class="language-selector animate-fade-in delay-2" style="display: inline-block;">
+            <button class="language-btn" type="button" style="padding: 15px 30px; font-size: 1.1rem;">
+                <span class="flag-icon">{% if request.LANGUAGE_CODE == 'hi' %}🇮🇳{% elif request.LANGUAGE_CODE == 'bn' %}🇧🇩{% elif request.LANGUAGE_CODE == 'ta' %}🇱🇰{% elif request.LANGUAGE_CODE == 'te' %}🇮🇳{% elif request.LANGUAGE_CODE == 'mr' %}🇮🇳{% else %}🇬🇧{% endif %}</span>
+                <span class="lang-name">
+                    {% if request.LANGUAGE_CODE == 'hi' %}हिंदी (Hindi)
+                    {% elif request.LANGUAGE_CODE == 'bn' %}বাংলা (Bengali)
+                    {% elif request.LANGUAGE_CODE == 'ta' %}தமிழ் (Tamil)
+                    {% elif request.LANGUAGE_CODE == 'te' %}తెలుగు (Telugu)
+                    {% elif request.LANGUAGE_CODE == 'mr' %}मराठी (Marathi)
+                    {% else %}English{% endif %}
+                </span>
+                <i class="bi bi-chevron-down"></i>
+            </button>
+            <div class="language-dropdown">
+                <form action="{% url 'set_language' %}" method="post" id="language-form-landing">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.path }}">
+                    <input name="language" type="hidden" value="en">
+                    
+                    <a href="#" class="language-option {% if request.LANGUAGE_CODE == 'en' or not request.LANGUAGE_CODE %}active{% endif %}" 
+                       onclick="changeLanguageLanding('en'); return false;">
+                        <span class="flag-icon">🇬🇧</span>
+                        <span>English</span>
+                    </a>
+                    <a href="#" class="language-option {% if request.LANGUAGE_CODE == 'hi' %}active{% endif %}"
+                       onclick="changeLanguageLanding('hi'); return false;">
+                        <span class="flag-icon">🇮🇳</span>
+                        <span>हिंदी (Hindi)</span>
+                    </a>
+                    <a href="#" class="language-option {% if request.LANGUAGE_CODE == 'bn' %}active{% endif %}" 
+                       onclick="changeLanguageLanding('bn'); return false;">
+                        <span class="flag-icon">🇧🇩</span>
+                        <span>বাংলা (Bengali)</span>
+                    </a>
+                    <a href="#" class="language-option {% if request.LANGUAGE_CODE == 'ta' %}active{% endif %}" 
+                       onclick="changeLanguageLanding('ta'); return false;">
+                        <span class="flag-icon">🇱🇰</span>
+                        <span>தமிழ் (Tamil)</span>
+                    </a>
+                    <a href="#" class="language-option {% if request.LANGUAGE_CODE == 'te' %}active{% endif %}" 
+                       onclick="changeLanguageLanding('te'); return false;">
+                        <span class="flag-icon">🇮🇳</span>
+                        <span>తెలుగు (Telugu)</span>
+                    </a>
+                    <a href="#" class="language-option {% if request.LANGUAGE_CODE == 'mr' %}active{% endif %}" 
+                       onclick="changeLanguageLanding('mr'); return false;">
+                        <span class="flag-icon">🇮🇳</span>
+                        <span>मराठी (Marathi)</span>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<!-- Call to Action -->
+<section class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="container text-center">
+        <h2 class="text-white mb-4 animate-fade-in">{% trans "Ready to Connect with Your Parliament?" %}</h2>
+        <p class="text-white-50 mb-4 animate-fade-in delay-1">{% trans "Join thousands of citizens who are actively engaging with their representatives" %}</p>
+        <a href="{% url 'citizen_register' %}" class="btn btn-light btn-lg animate-fade-in delay-2">
+            <i class="bi bi-person-plus me-2"></i>{% trans "Get Started Today" %}
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function changeLanguageLanding(lang) {
+        const form = document.getElementById('language-form-landing');
+        const languageInput = form.querySelector('input[name="language"]');
+        languageInput.value = lang;
+        form.submit();
+    }
+</script>
+{% endblock %}
+

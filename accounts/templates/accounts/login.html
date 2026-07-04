@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Login" %} - {% trans "AI Parliament" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .login-section {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 50px 0;
+    }
+    
+    .login-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    
+    .login-header {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        padding: 40px 30px;
+        text-align: center;
+    }
+    
+    .login-header h3 {
+        color: #fff;
+        font-weight: 600;
+        margin: 0;
+    }
+    
+    .login-header p {
+        color: rgba(255,255,255,0.7);
+        margin: 10px 0 0;
+    }
+    
+    .login-body {
+        padding: 40px 30px;
+    }
+    
+    .form-group {
+        margin-bottom: 25px;
+    }
+    
+    .form-label {
+        font-weight: 500;
+        color: #1a1a2e;
+        margin-bottom: 8px;
+    }
+    
+    .form-control {
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        padding: 12px 15px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+        border-color: #00d4ff;
+        box-shadow: 0 0 0 3px rgba(0,212,255,0.1);
+    }
+    
+    .btn-login {
+        width: 100%;
+        background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+        border: none;
+        padding: 14px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0,212,255,0.4);
+    }
+    
+    .register-link {
+        text-align: center;
+        margin-top: 25px;
+    }
+    
+    .register-link a {
+        color: #0099cc;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+    
+    .role-selector {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    
+    .role-option {
+        flex: 1;
+        padding: 15px;
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .role-option:hover {
+        border-color: #00d4ff;
+    }
+    
+    .role-option.active {
+        border-color: #00d4ff;
+        background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f7 100%);
+    }
+    
+    .role-option i {
+        font-size: 2rem;
+        color: #0099cc;
+        margin-bottom: 8px;
+    }
+    
+    .role-option span {
+        display: block;
+        font-weight: 500;
+        color: #1a1a2e;
+    }
+    
+    .forgot-password {
+        text-align: right;
+        margin-top: -15px;
+        margin-bottom: 20px;
+    }
+    
+    .forgot-password a {
+        color: #0099cc;
+        font-size: 0.9rem;
+        text-decoration: none;
+    }
+    
+    .forgot-password a:hover {
+        text-decoration: underline;
+    }
+    
+    .divider {
+        display: flex;
+        align-items: center;
+        margin: 25px 0;
+    }
+    
+    .divider::before,
+    .divider::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #e9ecef;
+    }
+    
+    .divider span {
+        padding: 0 15px;
+        color: #666;
+        font-size: 0.9rem;
+    }
+    
+    .social-login {
+        display: flex;
+        gap: 15px;
+    }
+    
+    .btn-social {
+        flex: 1;
+        padding: 12px;
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        background: #fff;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-social:hover {
+        border-color: #dee2e6;
+        background: #f8f9fa;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="login-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="login-card">
+                    <div class="login-header">
+                        <h3><i class="bi bi-box-arrow-in-right me-2"></i>{% trans "Welcome Back" %}</h3>
+                        <p>{% trans "Login to access your AI Parliament account" %}</p>
+                    </div>
+                    <div class="login-body">
+                        {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+                        
+                        <form method="POST" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            
+                            <div class="form-group">
+                                <label class="form-label">{% trans "Username" %}</label>
+                                <input type="text" name="username" class="form-control" placeholder="{% trans 'Enter your username' %}" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">{% trans "Password" %}</label>
+                                <input type="password" name="password" class="form-control" placeholder="{% trans 'Enter your password' %}" required>
+                            </div>
+                            
+                            <div class="forgot-password">
+                                <a href="#">{% trans "Forgot Password?" %}</a>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-login">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>{% trans "Login" %}
+                            </button>
+                        </form>
+                        
+                        <div class="register-link">
+                            <p>{% trans "Don't have an account?" %} <a href="{% url 'citizen_register' %}">{% trans "Register as Citizen" %}</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,225 @@
+# Hindi translations for AI Parliament project.
+# Copyright (C) 2024 AI Parliament
+# This file is distributed under the same license as the AI Parliament project.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: AI Parliament 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 12:00+0000\n"
+"PO-Revision-Date: 2024-01-01 12:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Hindi\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: core/templates/base.html
+msgid "AI Parliament"
+msgstr "एआई संसद"
+
+#: core/templates/base.html
+msgid "Home"
+msgstr "होम"
+
+#: core/templates/base.html
+msgid "About"
+msgstr "हमारे बारे में"
+
+#: core/templates/base.html
+msgid "Features"
+msgstr "विशेषताएं"
+
+#: core/templates/base.html
+msgid "Contact"
+msgstr "संपर्क"
+
+#: core/templates/base.html
+msgid "Login"
+msgstr "लॉगिन"
+
+#: core/templates/landing.html
+msgid "AI Powered Parliament System"
+msgstr "एआई संचालित संसद प्रणाली"
+
+#: core/templates/landing.html
+msgid "Bridging the gap between Citizens and Parliament using Artificial Intelligence"
+msgstr "कृत्रिम बुद्धिमत्ता का उपयोग करके नागरिकों और संसद के बीच की दूरी को पाटना"
+
+#: core/templates/landing.html
+msgid "Citizen Register"
+msgstr "नागरिक पंजीकरण"
+
+#: core/templates/landing.html
+msgid "Our Features"
+msgstr "हमारी विशेषताएं"
+
+#: core/templates/landing.html
+msgid "Citizen Issues"
+msgstr "नागरिक समस्याएं"
+
+#: core/templates/landing.html
+msgid "Citizens can directly submit their problems and concerns to the parliament system."
+msgstr "नागरिक अपनी समस्याओं और चिंताओं को सीधे संसद प्रणाली में जमा कर सकते हैं।"
+
+#: core/templates/landing.html
+msgid "MP Response"
+msgstr "सांसद प्रतिक्रिया"
+
+#: core/templates/landing.html
+msgid "Members of Parliament can review and respond to citizen queries efficiently."
+msgstr "संसद के सदस्य नागरिकों के प्रश्नों की समीक्षा कर सकते हैं और कुशलता से जवाब दे सकते हैं।"
+
+#: core/templates/landing.html
+msgid "AI Analysis"
+msgstr "एआई विश्लेषण"
+
+#: core/templates/landing.html
+msgid "Advanced AI technology to summarize parliamentary speeches and debates."
+msgstr "संसदीय भाषणों और बहसों को सारांशित करने के लिए उन्नत एआई तकनीक।"
+
+#: core/templates/landing.html
+msgid "About AI Parliament"
+msgstr "एआई संसद के बारे में"
+
+#: core/templates/landing.html
+msgid "Secure citizen registration and authentication"
+msgstr "सुरक्षित नागरिक पंजीकरण और प्रमाणीकरण"
+
+#: core/templates/landing.html
+msgid "Real-time issue tracking and status updates"
+msgstr "रीयल-टाइम समस्या ट्रैकिंग और स्थिति अपडेट"
+
+#: core/templates/landing.html
+msgid "AI-powered speech summarization"
+msgstr "एआई-संचालित भाषण सारांश"
+
+#: core/templates/landing.html
+msgid "Multi-language support for accessibility"
+msgstr "सुलभता के लिए बहुभाषी समर्थन"
+
+#: core/templates/landing.html
+msgid "Active Citizens"
+msgstr "सक्रिय नागरिक"
+
+#: core/templates/landing.html
+msgid "MPs Registered"
+msgstr "पंजीकृत सांसद"
+
+#: core/templates/landing.html
+msgid "Issues Resolved"
+msgstr "हल की गई समस्याएं"
+
+#: core/templates/landing.html
+msgid "Select Your Preferred Language"
+msgstr "अपनी पसंदीदा भाषा चुनें"
+
+#: core/templates/landing.html
+msgid "Ready to Connect with Your Parliament?"
+msgstr "अपने संसद से जुड़ने के लिए तैयार हैं?"
+
+#: core/templates/landing.html
+msgid "Join thousands of citizens who are actively engaging with their representatives"
+msgstr "हजारों नागरिकों से जुड़ें जो सक्रिय रूप से अपने प्रतिनिधियों से जुड़ रहे हैं"
+
+#: core/templates/landing.html
+msgid "Get Started Today"
+msgstr "आज ही शुरू करें"
+
+#: core/templates/landing.html
+msgid "Empowering Democracy with Artificial Intelligence"
+msgstr "कृत्रिम बुद्धिमत्ता के साथ लोकतंत्र को सशक्त बनाना"
+
+#: accounts/templates/accounts/login.html
+msgid "Welcome Back"
+msgstr "वापसी पर स्वागत है"
+
+#: accounts/templates/accounts/login.html
+msgid "Login to access your AI Parliament account"
+msgstr "अपने एआई संसद खाते तक पहुंचने के लिए लॉगिन करें"
+
+#: accounts/templates/accounts/login.html
+msgid "Username"
+msgstr "उपयोगकर्ता नाम"
+
+#: accounts/templates/accounts/login.html
+msgid "Enter your username"
+msgstr "अपना उपयोगकर्ता नाम दर्ज करें"
+
+#: accounts/templates/accounts/login.html
+msgid "Password"
+msgstr "पासवर्ड"
+
+#: accounts/templates/accounts/login.html
+msgid "Enter your password"
+msgstr "अपना पासवर्ड दर्ज करें"
+
+#: accounts/templates/accounts/login.html
+msgid "Forgot Password?"
+msgstr "पासवर्ड भूल गए?"
+
+#: accounts/templates/accounts/login.html
+msgid "Don't have an account?"
+msgstr "खाता नहीं है?"
+
+#: accounts/templates/accounts/login.html
+msgid "Register as Citizen"
+msgstr "नागरिक के रूप में पंजीकरण करें"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Citizen Registration"
+msgstr "नागरिक पंजीकरण"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Create your account to connect with Parliament"
+msgstr "संसद से जुड़ने के लिए अपना खाता बनाएं"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Email"
+msgstr "ईमेल"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Enter your email"
+msgstr "अपना ईमेल दर्ज करें"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Create a password"
+msgstr "पासवर्ड बनाएं"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Confirm your password"
+msgstr "अपना पासवर्ड दोबारा दर्ज करें"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Choose a username"
+msgstr "उपयोगकर्ता नाम चुनें"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "I agree to the"
+msgstr "मैं सहमत हूं"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Terms and Conditions"
+msgstr "नियम और शर्तें"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "and"
+msgstr "और"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Privacy Policy"
+msgstr "गोपनीयता नीति"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Register"
+msgstr "पंजीकरण"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Already have an account?"
+msgstr "पहले से खाता है?"
+
+#: accounts/templates/accounts/citizen_register.html
+msgid "Login here"
+msgstr "यहां लॉगिन करें"
+

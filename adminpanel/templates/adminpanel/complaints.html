@@ -1,0 +1,103 @@
+{% extends 'adminpanel/base_admin.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Manage Complaints" %}{% endblock %}
+{% block page_title %}{% trans "Manage Complaints" %}{% endblock %}
+
+{% block content %}
+<div class="content-card">
+    <div class="content-card-header">
+        <h5 class="content-card-title">
+            <i class="bi bi-inbox me-2"></i>{% trans "All Complaints" %}
+        </h5>
+            <div class="d-flex gap-2">
+                <select class="form-select" style="width: 150px;">
+                <option value="">All Status</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+            </select>
+            <input type="text" class="form-control" placeholder="Search..." style="width: 200px;">
+            </div>
+    </div>
+    
+    {% if complaints %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{% trans "ID" %}</th>
+                    <th>{% trans "Citizen" %}</th>
+                    <th>{% trans "Title" %}</th>
+                    <th>{% trans "Category" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Date" %}</th>
+                    <th>{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for complaint in complaints %}
+                <tr>
+                    <td>#{{ complaint.id }}</td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="citizen-avatar me-2">
+                                {{ complaint.citizen.username|first|upper }}
+                            </div>
+                            {{ complaint.citizen.username }}
+                        </div>
+                    </td>
+                    <td>{{ complaint.title|truncatechars:40 }}</td>
+                    <td>
+                        <span class="badge" style="background: rgba(0,168,232,0.2); color: #00a8e8;">
+                            {{ complaint.category }}
+                        </span>
+                    </td>
+                    <td>
+                        {% if complaint.status == 'Pending' %}
+                            <span class="badge badge-pending">{% trans "Pending" %}</span>
+                        {% elif complaint.status == 'In Progress' %}
+                            <span class="badge badge-inprogress">{% trans "In Progress" %}</span>
+                        {% elif complaint.status == 'Resolved' %}
+                            <span class="badge badge-resolved">{% trans "Resolved" %}</span>
+                        {% else %}
+                            <span class="badge">{{ complaint.status }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ complaint.created_at|date:"M d, Y" }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary me-1">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="bi bi-inbox" style="font-size: 4rem; color: rgba(255,255,255,0.2);"></i>
+        <h5 class="mt-3">No complaints found</h5>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .citizen-avatar {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #28a745, #20c997);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
+
