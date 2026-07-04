@@ -29,6 +29,24 @@ The platform automatically analyzes parliamentary sessions, generates AI-powered
 Its objective is to improve transparency, accessibility, and citizen participation in parliamentary proceedings using Artificial Intelligence.
 
 ---
+# 🌟 Project Highlights
+
+✨ AI-Powered Parliament Monitoring Platform
+
+🤖 Automatic Session Summarization using Groq LLM
+
+🎥 YouTube Transcript API Integration
+
+🗳️ Citizen Voting & Feedback System
+
+🏛️ Dedicated Dashboards for Citizens, MPs & Administrators
+
+📊 Real-Time Analytics & Insights
+
+🔐 Secure Authentication System
+
+💬 Complaint & Suggestion Portal
+
 
 # 🎯 Problem Statement
 
@@ -255,6 +273,16 @@ Reports & Analytics
 - Analytics
 
 ---
+# 🎥 Live Demo
+
+> 🚧 **Live Demo Coming Soon**
+
+The project will be deployed on **Render**.  
+The live application link will be added here after deployment.
+
+<!-- Demo Link -->
+<!-- https://your-live-demo-url -->
+
 # 🚀 Installation Guide
 
 ### 1️⃣ Clone the Repository
