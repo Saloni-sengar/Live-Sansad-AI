@@ -1,1 +1,1 @@
-
+Project images will be stored here.
