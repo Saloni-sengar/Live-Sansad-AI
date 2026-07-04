@@ -1,4 +1,7 @@
 <p align="center">
+⭐ Star this repository if you like the project ⭐
+</p>
+<p align="center">
   <img src="images/banner.png" width="100%">
 </p>
 
@@ -285,6 +288,7 @@ Reports & Analytics
 # 🎥 Live Demo
 
 > 🚧 **Live Demo Coming Soon**
+> Deployment in progress using Render.
 
 The project will be deployed on **Render**.  
 The live application link will be added here after deployment.
@@ -393,7 +397,7 @@ http://127.0.0.1:8000/
 
 ## 🤖 AI Session Summary
 
-![AI Summary](images/ai_summary.png)
+![AI Summary](images/ai-summary.png)
 
 ---
 
@@ -468,6 +472,7 @@ git push origin feature-name
 # 📄 License
 
 This project is developed for **academic and educational purposes**.
+MIT License
 
 ---
 # 👩‍💻 Author
@@ -482,6 +487,7 @@ This project is developed for **academic and educational purposes**.
 
 - 💼 LinkedIn: https://www.linkedin.com/in/saloni-sengar-2a7629290/
 - 💻 GitHub: https://github.com/Saloni-sengar
+- Repository:https://github.com/Saloni-sengar/Live-Sansad-AI
 - 🧩 LeetCode: https://leetcode.com/u/Saloni_Sengar/
 - 📚 GeeksforGeeks: https://www.geeksforgeeks.org/profile/salonisengar67/
 - 📧 Email: salonisengar67@gmail.com
